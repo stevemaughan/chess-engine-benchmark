@@ -1,0 +1,27 @@
+# Build artefacts
+source/build/
+*.o
+*.obj
+*.a
+*.lib
+*.pdb
+*.gcda
+*.gcno
+*.profraw
+*.profdata
+
+# Match output and logs
+*.pgn
+*.log
+!resources/fastchess/UHO.pgn
+
+# Large tuning / temp data
+*.bin
+*.epd.gz
+*.tmp
+
+# Editor / OS noise
+.vscode/
+.idea/
+Thumbs.db
+.DS_Store
