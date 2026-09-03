@@ -193,12 +193,16 @@ are entirely up to you.
 
 ## Folder layout
 
-At the start only `CLAUDE.md` and `resources/` exist. You create everything
-else.
+At the start only `CLAUDE.md`, `AGENTS.md`, `README.md` and `resources/`
+exist. The `README.md` present at the start describes the benchmark for
+human readers; it is not for you. Ignore it during the run and **overwrite
+it** with your own write-up after the deadline (see below). You create
+everything else.
 
 ```
 CLAUDE.md                 this file
-README.md                 public write-up, created AFTER the 24 hours (see below)
+AGENTS.md                 one-line pointer to this file for other agent tools
+README.md                 the benchmark description at the start; REPLACED by your write-up AFTER the 24 hours (see below)
 resources/                read-only inputs (see below)
   protocol/uci-protocol.md
   fastchess/fastchess.exe
@@ -339,7 +343,8 @@ least depth 5 (depth 6 where it is cheap enough) can be considered correct.
 
 Use the full 24 hours on the engine. **Only once the clock has run out** (or
 the final build is installed and you have decided not to make further
-changes), write a `README.md` in the project root. This file does not affect
+changes), write a `README.md` in the project root, **replacing the benchmark
+description that was there at the start**. This file does not affect
 the score and is written outside the 24-hour window, so spend no engine time
 on it. It is intended for public readers, so write it for a reader who
 knows chess programming but knows nothing about this benchmark.

@@ -10,6 +10,11 @@ a board and see who wins. Strength is measured in Elo, Elo can be compared
 across models and across time, and there is no arguing with a match result.
 This repository is the template for running that test on any model.
 
+> **Note:** this README describes the benchmark and lives in the template.
+> When a copy of this folder is used for a run, the model overwrites this
+> file at the end of its 24 hours with its own write-up of the engine it
+> built. The version you are reading survives only here.
+
 The idea owes something to the long-running community projects that have
 produced strong engines over months of work. The question here is narrower:
 what can a model do in a single day, with nobody to ask?
@@ -175,7 +180,8 @@ or played an illegal move in the 3,800-game rating run.
    features listed in `CLAUDE.md`. Note the physical core count.
 3. Open the folder with the model's agent tooling and tell it to read and
    follow `CLAUDE.md`. An `AGENTS.md` is included for tools that look for
-   that name instead.
+   that name instead. The model is told to ignore this README during the
+   run and replace it with its own after the deadline.
 4. Walk away. Do not answer questions. If the tool's context resets, restart
    it in the same folder; the instructions cover resuming.
 5. After 24 hours, take the executable from `final/` and rate it against
@@ -187,7 +193,7 @@ or played an illegal move in the 3,800-game rating run.
 ```
 CLAUDE.md          the benchmark instructions the model follows
 AGENTS.md          one-line pointer to CLAUDE.md for other agent tools
-README.md          this file (for humans; the model writes its own README in its run folder)
+README.md          this file (for humans); replaced by the model's own README at the end of a run
 resources/         read-only inputs, described above
 ```
 
