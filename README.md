@@ -73,6 +73,9 @@ rating.
 - **`docs/progress.md`**: an hourly log of what was done, what works, the
   current Elo estimate and the plan for the next hour, plus the time the
   engine first passed the perft suite and first played a full game.
+- **`docs/resources.md`**: a log of every internet resource the model
+  consulted during the run, with the time, the URL and what it took from
+  it. An empty file means it used none.
 - **`README.md`**: written only after the deadline, covering the engine's
   architecture, how the time was spent, an Elo-by-hour table, every
   assumption made and the model's own estimate of its strength.

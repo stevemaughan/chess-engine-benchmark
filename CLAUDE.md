@@ -213,7 +213,7 @@ resources/                read-only inputs (see below)
   perft/perft.epd         126 perft positions, depths 1–6
 source/                   ALL your source code, build scripts, test scripts, tuning data
 final/                    the final executable (<ModelName>chess24hrs.exe) — nothing else required
-docs/                     start_time.txt and progress.md (see below)
+docs/                     start_time.txt, progress.md and resources.md (see below)
 ```
 
 Intermediate test builds can live anywhere under `source/` (e.g.
@@ -325,6 +325,15 @@ least depth 5 (depth 6 where it is cheap enough) can be considered correct.
 - **Firsts**: record in `docs/progress.md` the time the engine first passes
   the full perft suite (`resources/perft/perft.epd`), and the time the first
   full legal chess game was played by the engine.
+- **Internet use**: keep `docs/resources.md`, a log of every external
+  resource you consult during the run. Each time you fetch, search or read
+  anything on the internet (chessprogramming.org, Wikipedia, GitHub, a paper,
+  a forum thread, a search engine, anything at all), add a line with the
+  time, the URL, and a few words on what you took from it (an idea, a
+  formula, a table, a constant, or nothing useful). Create the file at the
+  start of the run even if it stays empty; an empty file means you used no
+  external resources. This log is part of the record of how the engine was
+  built and is read alongside `docs/progress.md`.
 - **Keep `final/` always deployable.** As soon as you have an engine that
   plays legal chess without crashing under fastchess, put a build of it in
   `final/`. Thereafter, whenever you have a *verified* stronger and stable
