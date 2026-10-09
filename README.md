@@ -110,9 +110,9 @@ small.
 
 ## Results so far
 
-Seven engines have taken the test: six from Claude models and one from
-Astra 6. They were rated in four stages, on 2, 19 and 23 September and
-5 October 2026, and all 9,320 games are fitted together. Each new engine's
+Eight engines have taken the test: seven from Claude models and one from
+Astra 6. They were rated in five stages, on 2, 19 and 23 September and
+5 and 8 October 2026, and all 10,380 games are fitted together. Each new engine's
 games shift the fit a little, so earlier engines' ratings can move by a few
 points between updates.
 
@@ -123,8 +123,9 @@ points between updates.
 | Fable 5.1 chess 24hrs | Claude Fable 5.1 | **3260** | ±19 | 1580 | 49.8% | [fable51-chess-24hrs](https://github.com/stevemaughan/fable51-chess-24hrs) |
 | Opus 5 chess 24hrs | Claude Opus 5 | **3229** | ±19 | 1580 | 45.9% | [opus5-chess-24hrs](https://github.com/stevemaughan/opus5-chess-24hrs) |
 | Astra 6 chess 24hrs | Astra 6 | **3144** | ±20 | 1520 | 44.4% | [astra6-chess-24hrs](https://github.com/stevemaughan/astra6-chess-24hrs) |
-| Fable 5 chess 24hrs | Claude Fable 5 | **3044** | ±21 | 1200 | 47.4% | [fable5-chess-24hrs](https://github.com/stevemaughan/fable5-chess-24hrs) |
-| Sonnet 5 chess 24hrs | Claude Sonnet 5 | **2702** | ±25 | 1200 | 29.5% | [sonnet5-chess-24hrs](https://github.com/stevemaughan/sonnet5-chess-24hrs) |
+| Fable 5 chess 24hrs | Claude Fable 5 | **3045** | ±21 | 1300 | 50.3% | [fable5-chess-24hrs](https://github.com/stevemaughan/fable5-chess-24hrs) |
+| Haiku 5.5 chess 24hrs | Claude Haiku 5.5 | **2765** | ±24 | 1060 | 46.7% | [haiku-5.5-chess-24hrs](https://github.com/stevemaughan/haiku-5.5-chess-24hrs) |
+| Sonnet 5 chess 24hrs | Claude Sonnet 5 | **2703** | ±23 | 1360 | 30.9% | [sonnet5-chess-24hrs](https://github.com/stevemaughan/sonnet5-chess-24hrs) |
 
 Each repository holds the full source, the hourly progress log, a README the
 model wrote after the deadline, and a release with the executable.
@@ -143,21 +144,27 @@ Sonnet 5.5 was rated against nine anchors from Stash 33 (3274) to Patricia
 the anchors alone). Its games against the other AI engines tell the same
 story, so the combined fit barely moves it.
 
+Haiku 5.5 was rated against the same five anchors as Sonnet 5, from Stash 20
+(2512) to Crafty (2970), plus games against Sonnet 5 and Fable 5. Against the
+anchors alone it rates 2768 ±27, and its AI head-to-heads agree.
+
 ### Head-to-head among the AI engines
 
 Scores are for the row engine against the column engine, 100 or 160 games per
 pairing. A dash means the pair did not play: Opus 5.5 and Sonnet 5.5 were
-not matched against Fable 5 or Sonnet 5, which are 350 or more Elo weaker.
+not matched against Fable 5, Haiku 5.5 or Sonnet 5, which are 350 or more Elo
+weaker, and Haiku 5.5 played only its two nearest AI neighbours.
 
-| | Opus 5.5 | Sonnet 5.5 | Fable 5.1 | Opus 5 | Astra 6 | Fable 5 | Sonnet 5 |
-|---|:---:|:---:|:---:|:---:|:---:|:---:|:---:|
-| **Opus 5.5** | | 56.9% | 86.6% | 85.6% | 92.5% | – | – |
-| **Sonnet 5.5** | 43.1% | | 76.6% | 77.8% | 80.0% | – | – |
-| **Fable 5.1** | 13.4% | 23.4% | | 63.5% | 68.1% | 80.0% | 98.5% |
-| **Opus 5** | 14.4% | 22.2% | 36.5% | | 62.2% | 79.0% | 98.5% |
-| **Astra 6** | 7.5% | 20.0% | 31.9% | 37.8% | | 67.5% | 92.0% |
-| **Fable 5** | – | – | 20.0% | 21.0% | 32.5% | | 87.5% |
-| **Sonnet 5** | – | – | 1.5% | 1.5% | 8.0% | 12.5% | |
+| | Opus 5.5 | Sonnet 5.5 | Fable 5.1 | Opus 5 | Astra 6 | Fable 5 | Haiku 5.5 | Sonnet 5 |
+|---|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|
+| **Opus 5.5** | | 56.9% | 86.6% | 85.6% | 92.5% | – | – | – |
+| **Sonnet 5.5** | 43.1% | | 76.6% | 77.8% | 80.0% | – | – | – |
+| **Fable 5.1** | 13.4% | 23.4% | | 63.5% | 68.1% | 80.0% | – | 98.5% |
+| **Opus 5** | 14.4% | 22.2% | 36.5% | | 62.2% | 79.0% | – | 98.5% |
+| **Astra 6** | 7.5% | 20.0% | 31.9% | 37.8% | | 67.5% | – | 92.0% |
+| **Fable 5** | – | – | 20.0% | 21.0% | 32.5% | | 85.0% | 87.5% |
+| **Haiku 5.5** | – | – | – | – | – | 15.0% | | 58.1% |
+| **Sonnet 5** | – | – | 1.5% | 1.5% | 8.0% | 12.5% | 41.9% | |
 
 ### How fast they got going
 
@@ -171,13 +178,14 @@ engine first played a complete game.
 | Sonnet 5.5 | 7 min | ~13 min |
 | Fable 5.1 | 8 min | 15 min |
 | Fable 5 | 9 min | 17 min |
+| Haiku 5.5 | 8 min (depth 5), 15 h (depth 6) | 9 min |
 | Astra 6 | 12 min (depth 5), 22 min (depth 6) | 12 min |
 | Opus 5 | ~40 min | ~45 min |
 
-### Notes on the seven runs
+### Notes on the eight runs
 
-**All seven chose C++** and bitboards with PEXT sliding-piece attacks, and all
-seven built the conventional modern search: iterative deepening, principal
+**All eight chose C++** and bitboards with PEXT sliding-piece attacks, and all
+eight built the conventional modern search: iterative deepening, principal
 variation search, transposition table, quiescence, null move, late move
 reductions and a suite of pruning heuristics. The differences lay in
 evaluation, tuning discipline and how the time was spent.
@@ -235,16 +243,30 @@ estimated about 3170 and was rated 3144.
 
 **Fable 5** kept the whole engine in a single C++ file and chained a long
 series of SPRT-verified improvements. It measured itself at 3030–3045 and was
-rated 3044.
+rated 3045.
+
+**Haiku 5.5** wrote its whole first engine, about 1,000 lines in one C++ file,
+in eight minutes: perft passed to depth 5 at minute eight and it played its
+first games against Stash 20 a minute later. It kept a hand-crafted
+evaluation built on the Simplified Evaluation Function tables and added terms
+one at a time, each accepted only after an SPRT or a fixed self-play match
+against the previous release: pawn structure (+106), mobility (+49), king
+safety (+22), late-move pruning with an "improving" flag (+29),
+history-adjusted reductions (+23) and internal iterative reduction (+22). Early
+test runs exposed time forfeits, which it traced and fixed in the second hour,
+and a robustness pass caught a crash on malformed FENs. Its last seven hours
+of experiments were all flat or negative, so it stopped engine work with
+about three hours to spare. It estimated 2755 ±50 and was rated 2765, about 60
+Elo above Sonnet 5, which it beat 58–42 in their head-to-head.
 
 **Sonnet 5** had one of the fastest perft passes but spent much of the first
 half of its run on reliability, including a crash traced to running the
-search on a spawned thread under MinGW. It finished at 2702, close to its own
+search on a spawned thread under MinGW. It finished at 2703, close to its own
 estimate of 2720–2730.
 
 Every model's self-estimate landed within its stated uncertainty of the
-measured rating. None of the seven engines lost a game on time, disconnected
-or played an illegal move in any of the 9,320 rating games.
+measured rating. None of the eight engines lost a game on time, disconnected
+or played an illegal move in any of the 10,380 rating games.
 
 ## Running the benchmark on a new model
 
