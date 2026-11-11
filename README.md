@@ -92,9 +92,9 @@ separate rating project, never by the model itself.
   Blitz values, chosen to sit within about 250 Elo of the engine under test,
   plus head-to-head matches against the other AI engines in the series near
   its level.
-- The anchors are Stash versions 20 to 37, Juggernaut and Crafty, plus eight
-  stronger engines added for Opus 5.5 once it outgrew the Stash ladder
-  (see below).
+- The anchors are Stash versions 20 to 37, Juggernaut and Crafty, plus ten
+  stronger engines added once Opus 5.5 and then Fable 5.2 outgrew the Stash
+  ladder (see below).
 - An anchored maximum-likelihood Elo fit over every game in the series,
   reported with a 95% confidence interval. Ratings are refitted each time a
   new engine is added.
@@ -110,19 +110,20 @@ small.
 
 ## Results so far
 
-Eight engines have taken the test: seven from Claude models and one from
-Astra 6. They were rated in five stages, on 2, 19 and 23 September and
-5 and 8 October 2026, and all 10,380 games are fitted together. Each new engine's
-games shift the fit a little, so earlier engines' ratings can move by a few
-points between updates.
+Nine engines have taken the test: eight from Claude models and one from
+Astra 6. They were rated in six stages, on 2, 19 and 23 September, 5 and
+8 October and 10 November 2026, and all 12,600 games are fitted together. Each
+new engine's games shift the fit a little, so earlier engines' ratings can
+move by a few points between updates.
 
 | Engine | Model | Elo | 95% CI | Games | Score | Repository |
 |---|---|---:|:---:|---:|---:|---|
-| Opus 5.5 chess 24hrs | Claude Opus 5.5 | **3463** | ±16 | 2180 | 50.4% | [opus-5.5-chess-24hrs](https://github.com/stevemaughan/opus-5.5-chess-24hrs) |
-| Sonnet 5.5 chess 24hrs | Claude Sonnet 5.5 | **3420** | ±16 | 2180 | 50.9% | [sonnet-5.5-chess-24hrs](https://github.com/stevemaughan/sonnet-5.5-chess-24hrs) |
-| Fable 5.1 chess 24hrs | Claude Fable 5.1 | **3260** | ±19 | 1580 | 49.8% | [fable51-chess-24hrs](https://github.com/stevemaughan/fable51-chess-24hrs) |
-| Opus 5 chess 24hrs | Claude Opus 5 | **3229** | ±19 | 1580 | 45.9% | [opus5-chess-24hrs](https://github.com/stevemaughan/opus5-chess-24hrs) |
-| Astra 6 chess 24hrs | Astra 6 | **3144** | ±20 | 1520 | 44.4% | [astra6-chess-24hrs](https://github.com/stevemaughan/astra6-chess-24hrs) |
+| Fable 5.2 chess 24hrs | Claude Fable 5.2 | **3542** | ±15 | 2220 | 55.7% | [fable-5.2-chess-24hrs](https://github.com/stevemaughan/fable-5.2-chess-24hrs) |
+| Opus 5.5 chess 24hrs | Claude Opus 5.5 | **3461** | ±15 | 2340 | 49.3% | [opus-5.5-chess-24hrs](https://github.com/stevemaughan/opus-5.5-chess-24hrs) |
+| Sonnet 5.5 chess 24hrs | Claude Sonnet 5.5 | **3415** | ±15 | 2340 | 49.1% | [sonnet-5.5-chess-24hrs](https://github.com/stevemaughan/sonnet-5.5-chess-24hrs) |
+| Fable 5.1 chess 24hrs | Claude Fable 5.1 | **3254** | ±19 | 1680 | 47.3% | [fable51-chess-24hrs](https://github.com/stevemaughan/fable51-chess-24hrs) |
+| Opus 5 chess 24hrs | Claude Opus 5 | **3228** | ±19 | 1580 | 45.9% | [opus5-chess-24hrs](https://github.com/stevemaughan/opus5-chess-24hrs) |
+| Astra 6 chess 24hrs | Astra 6 | **3143** | ±19 | 1520 | 44.4% | [astra6-chess-24hrs](https://github.com/stevemaughan/astra6-chess-24hrs) |
 | Fable 5 chess 24hrs | Claude Fable 5 | **3045** | ±21 | 1300 | 50.3% | [fable5-chess-24hrs](https://github.com/stevemaughan/fable5-chess-24hrs) |
 | Haiku 5.5 chess 24hrs | Claude Haiku 5.5 | **2765** | ±24 | 1060 | 46.7% | [haiku-5.5-chess-24hrs](https://github.com/stevemaughan/haiku-5.5-chess-24hrs) |
 | Sonnet 5 chess 24hrs | Claude Sonnet 5 | **2703** | ±23 | 1360 | 30.9% | [sonnet5-chess-24hrs](https://github.com/stevemaughan/sonnet5-chess-24hrs) |
@@ -130,14 +131,34 @@ points between updates.
 Each repository holds the full source, the hourly progress log, a README the
 model wrote after the deadline, and a release with the executable.
 
+Fable 5.2 was rated in 2,220 games: 1,800 against ten anchors from Stash 37
+(3424) to Coda (3638) in two gauntlets, and 420 against Opus 5.5, Sonnet 5.5
+and Fable 5.1. Two more anchors were added for it, Clover 9.0 (3620) and Coda
+0.9.4 (3638). Both turned out to be off-scale: at 10+0.1 they play about 250
+Elo above their CCRL Blitz ratings relative to the other anchors, and Fable
+5.2 scored only 17% and 13% against them. The other eight anchors imply
+ratings from 3508 (Elixir) to 3654 (Stash 37), and it was level with Patricia
+5.0 (49.8%). The published figure therefore depends on which anchors are
+trusted:
+
+| Fit | Fable 5.2 Elo |
+|---|---:|
+| All games (the published figure) | 3542 ±15 |
+| Without Clover and Coda | 3571 ±17 |
+| Anchor games only | 3532 ±16 |
+| Anchor games only, without Clover and Coda | 3565 ±18 |
+
+Its rating games were played on a different laptop from the earlier stages
+(an Intel Core Ultra 9 285H), with the same settings.
+
 Opus 5.5 was stronger than Stash 37, the top of the Stash ladder, so eight
 stronger anchors were added to rate it: Marvin 6.3.0 (3458), Leorik 3.2
 (3490), Tucano 12.00 (3491), Carp 3.0.1 (3525), Sirius 9.0 (3528), Patricia
 5.0 (3539), Elixir 3.0 (3567) and Motor 0.9.0 (3695). Against the anchors
-alone it rates 3448 ±18. Its lopsided wins over the other AI engines pull the
-combined fit up to 3463. Together with Sonnet 5.5's wins they lowered the
-older engines by about 15 Elo compared with their first published ratings
-(Fable 5.1 was 3277).
+alone it rates 3448 ±18. Its lopsided wins over the older AI engines pull the
+combined fit up to 3461. Together with the wins of Sonnet 5.5 and Fable 5.2,
+they have lowered Fable 5.1 by 23 Elo and Opus 5 by 14 compared with their
+first published ratings (3277 and 3242).
 
 Sonnet 5.5 was rated against nine anchors from Stash 33 (3274) to Patricia
 (3539), in two gauntlets that agree (3410 ±24 and 3423 ±25; 3416 ±18 against
@@ -153,18 +174,20 @@ anchors alone it rates 2768 ±27, and its AI head-to-heads agree.
 Scores are for the row engine against the column engine, 100 or 160 games per
 pairing. A dash means the pair did not play: Opus 5.5 and Sonnet 5.5 were
 not matched against Fable 5, Haiku 5.5 or Sonnet 5, which are 350 or more Elo
-weaker, and Haiku 5.5 played only its two nearest AI neighbours.
+weaker, Haiku 5.5 played only its two nearest AI neighbours, and Fable 5.2
+played only the three engines ranked directly below it.
 
-| | Opus 5.5 | Sonnet 5.5 | Fable 5.1 | Opus 5 | Astra 6 | Fable 5 | Haiku 5.5 | Sonnet 5 |
-|---|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|
-| **Opus 5.5** | | 56.9% | 86.6% | 85.6% | 92.5% | – | – | – |
-| **Sonnet 5.5** | 43.1% | | 76.6% | 77.8% | 80.0% | – | – | – |
-| **Fable 5.1** | 13.4% | 23.4% | | 63.5% | 68.1% | 80.0% | – | 98.5% |
-| **Opus 5** | 14.4% | 22.2% | 36.5% | | 62.2% | 79.0% | – | 98.5% |
-| **Astra 6** | 7.5% | 20.0% | 31.9% | 37.8% | | 67.5% | – | 92.0% |
-| **Fable 5** | – | – | 20.0% | 21.0% | 32.5% | | 85.0% | 87.5% |
-| **Haiku 5.5** | – | – | – | – | – | 15.0% | | 58.1% |
-| **Sonnet 5** | – | – | 1.5% | 1.5% | 8.0% | 12.5% | 41.9% | |
+| | Fable 5.2 | Opus 5.5 | Sonnet 5.5 | Fable 5.1 | Opus 5 | Astra 6 | Fable 5 | Haiku 5.5 | Sonnet 5 |
+|---|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|
+| **Fable 5.2** | | 64.7% | 75.3% | 92.0% | – | – | – | – | – |
+| **Opus 5.5** | 35.3% | | 56.9% | 86.6% | 85.6% | 92.5% | – | – | – |
+| **Sonnet 5.5** | 24.7% | 43.1% | | 76.6% | 77.8% | 80.0% | – | – | – |
+| **Fable 5.1** | 8.0% | 13.4% | 23.4% | | 63.5% | 68.1% | 80.0% | – | 98.5% |
+| **Opus 5** | – | 14.4% | 22.2% | 36.5% | | 62.2% | 79.0% | – | 98.5% |
+| **Astra 6** | – | 7.5% | 20.0% | 31.9% | 37.8% | | 67.5% | – | 92.0% |
+| **Fable 5** | – | – | – | 20.0% | 21.0% | 32.5% | | 85.0% | 87.5% |
+| **Haiku 5.5** | – | – | – | – | – | – | 15.0% | | 58.1% |
+| **Sonnet 5** | – | – | – | 1.5% | 1.5% | 8.0% | 12.5% | 41.9% | |
 
 ### How fast they got going
 
@@ -176,19 +199,40 @@ engine first played a complete game.
 | Opus 5.5 | 6 min | ~11 min |
 | Sonnet 5 | 6 min | 46 min |
 | Sonnet 5.5 | 7 min | ~13 min |
+| Fable 5.2 | ~7 min (depth 5), 10 min (depth 6) | ~10 min |
 | Fable 5.1 | 8 min | 15 min |
 | Fable 5 | 9 min | 17 min |
 | Haiku 5.5 | 8 min (depth 5), 15 h (depth 6) | 9 min |
 | Astra 6 | 12 min (depth 5), 22 min (depth 6) | 12 min |
 | Opus 5 | ~40 min | ~45 min |
 
-### Notes on the eight runs
+### Notes on the nine runs
 
-**All eight chose C++** and bitboards with PEXT sliding-piece attacks, and all
-eight built the conventional modern search: iterative deepening, principal
+**All nine chose C++** and bitboards with PEXT sliding-piece attacks, and all
+nine built the conventional modern search: iterative deepening, principal
 variation search, transposition table, quiescence, null move, late move
 reductions and a suite of pruning heuristics. The differences lay in
 evaluation, tuning discipline and how the time was spent.
+
+**Fable 5.2** wrote the whole engine in one pass, and it was perft-exact on
+the first build. A PeSTO-evaluated version was in `final/` after 15 minutes,
+scoring 75% against Stash 25, and by the end of the first hour it had also
+written a self-play data generator, a CPU-only NNUE trainer and the network
+inference. It consulted nothing online during the run. Its first training
+recipe gave half the weight to the game result. A four-net tournament in hour
+five showed that pure search-score targets were about 245 Elo better, and
+that switch took the engine past Stash 37. A validation split that leaked
+positions from the same game had also made a wider net look better while it
+played 64 Elo worse, so from then on network questions were settled by
+fixed-node matches. When the 256-wide net stopped improving with more data,
+around hour 12, king input buckets added about 60 Elo. It then stopped data
+generation and moved the CPU to SPSA tuning of 55 search parameters over
+roughly 24,000 games, in two rounds worth about 50 Elo each. The shipped
+engine carries a (5 king buckets × 768 → 256) × 2 SCReLU network with eight
+output buckets, trained on about 175 million self-play positions. It
+estimated about 3590 (3550–3630) from matches against Stash 37 alone and was
+rated 3542, 81 Elo clear of Opus 5.5. It scored 65% against Opus 5.5, 75%
+against Sonnet 5.5 and 92% against Fable 5.1.
 
 **Opus 5.5** committed to a self-trained network from the start. It passed
 perft six minutes in and had a PeSTO-evaluated engine in `final/` at 16
@@ -201,10 +245,10 @@ buckets, trained on 86.7 million self-play positions. The rest of the run
 went on measured search and time-management tuning, typically 300–1,200
 games per decision. Low-clock stress tests at hour nine exposed a
 time-forfeit weakness, which it fixed. It estimated its own strength at
-3500 ±40 and was rated 3463, about 200 Elo clear of Fable 5.1. It scored 86%
+3500 ±40 and was rated 3461, about 200 Elo clear of Fable 5.1. It scored 86%
 against both Fable 5.1 and Opus 5.
 
-**Sonnet 5.5** took a similar route and finished second, 43 Elo behind Opus
+**Sonnet 5.5** took a similar route and finished 46 Elo behind Opus
 5.5. It passed perft seven minutes in, and its first engine used a
 hand-crafted evaluation. About two hours in, it replaced that with an NNUE
 trained only on its own self-play: a (768→256)×2 SCReLU network with eight
@@ -215,7 +259,7 @@ an ablation at hour six showed that razoring was costing about 110 Elo with
 the NNUE. Removing it was one of the largest single gains of the run. The net gains
 were flattening out by the last generations, and the final hours went on
 time-management tests and verification. It estimated 3425 ±40 and was rated
-3420. It scored 43% against Opus 5.5 and 77–78% against Fable 5.1 and Opus 5.
+3415. It scored 43% against Opus 5.5 and 77–78% against Fable 5.1 and Opus 5.
 
 **Fable 5.1** was the first to train its own network. About five and a half
 hours in it wrote its own self-play data generator and an NNUE trainer,
@@ -229,7 +273,7 @@ hand-crafted evaluation kept as a fallback option.
 
 **Opus 5** decided at the outset that NNUE was not affordable in 24 hours and
 put the time into a well-tuned hand-crafted evaluation and careful
-measurement of its pruning. It finished 31 Elo behind Fable 5.1 and lost
+measurement of its pruning. It finished 26 Elo behind Fable 5.1 and lost
 their head-to-head 23–27–50.
 
 **Astra 6** is the name the model was given after its run. A system reboot
@@ -239,7 +283,7 @@ It built a fitted hand-crafted evaluation of about 480 parameters plus a
 small 16-unit neural residual. Both were trained on about 435,000 positions
 from its own games, labelled by fixed 100,000-node searches from Stash 37.
 It then SPSA-tuned search and evaluation over more than 13,000 games. It
-estimated about 3170 and was rated 3144.
+estimated about 3170 and was rated 3143.
 
 **Fable 5** kept the whole engine in a single C++ file and chained a long
 series of SPRT-verified improvements. It measured itself at 3030–3045 and was
@@ -264,9 +308,14 @@ half of its run on reliability, including a crash traced to running the
 search on a spawned thread under MinGW. It finished at 2703, close to its own
 estimate of 2720–2730.
 
-Every model's self-estimate landed within its stated uncertainty of the
-measured rating. None of the eight engines lost a game on time, disconnected
-or played an illegal move in any of the 10,380 rating games.
+The first eight models' self-estimates all landed within their stated
+uncertainty of the measured rating. Fable 5.2's is the first to miss: 3542 is
+8 Elo below the bottom of its 3550–3630 range, although the fit without the
+two off-scale anchors (3571) is inside it. It had tested only against Stash,
+and the Stash ladder flatters an engine measured that way: its 79% against
+Stash 37 was its most favourable result against any anchor. None of the nine
+engines lost a game on time, disconnected or played an illegal move in any of
+the 12,600 rating games.
 
 ## Running the benchmark on a new model
 
@@ -303,4 +352,5 @@ resources/         read-only inputs, described above
 - The [UHO opening book](https://www.sp-cc.de/uho_2024.htm) by Stefan Pohl.
 - [CCRL](https://www.computerchess.org.uk/ccrl/404/) for the anchor ratings.
 - Crafty, Juggernaut, Marvin, Leorik, Tucano, Carp, Sirius, Patricia,
-  Elixir and Motor served as additional anchors in the rating runs.
+  Elixir, Clover, Coda and Motor served as additional anchors in the rating
+  runs.
